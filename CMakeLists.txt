@@ -5,20 +5,20 @@ find_package(ament_cmake REQUIRED)
 
 include(ExternalProject)
 
-set(osqp-cpp_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/osqp-cpp_install)
+set(osqp-cpp_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/osqp_install)
 
-ExternalProject_Add(osqp-cpp_ext
+ExternalProject_Add(osqp-cpp
   GIT_REPOSITORY https://github.com/google/osqp-cpp
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${osqp-cpp_INSTALL_DIR} -DCMAKE_BUILD_TYPE=Release
 )
 
 install(
-  DIRECTORY ${osqp-cpp_INSTALL_DIR}/include/
+  DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/osqp-cpp-prefix/src/osqp-cpp/include/
   DESTINATION include
 )
 
 install(
-  DIRECTORY ${osqp-cpp_INSTALL_DIR}/lib/
+  DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/osqp-cpp-prefix/src/osqp-cpp-build/ ${CMAKE_CURRENT_BINARY_DIR}/osqp_install/lib/
   DESTINATION lib
 )
 
